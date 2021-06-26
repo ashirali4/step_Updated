@@ -24,7 +24,6 @@ class AuthService {
       String uid=user.uid;
       // this is for fetch the role
       // role side
-      var document = await FirebaseFirestore.instance.doc('users1/$uid').get().then((value) => print(value['role'].toString()));
 
     } catch (e) {
       print(e.toString());

@@ -8,6 +8,8 @@ import 'package:package_info/package_info.dart';
 import 'package:step/models/usermodels.dart';
 
 class UserHelper {
+  static FirebaseAuth auth = FirebaseAuth.instance;
+
   static FirebaseFirestore _database = FirebaseFirestore.instance;
 
   static saveUser(User user) async {
@@ -80,5 +82,15 @@ class UserHelper {
         "device_info": deviceData,
       });
     }
+  }
+
+  static Future<String> getuserRole() async {
+    final User user = auth.currentUser;
+    final uid = user.uid;
+    String role='';
+    await FirebaseFirestore.instance.doc('users1/$uid').get().then((value){
+      role=value['role'].toString();
+    });
+    return role;
   }
 }

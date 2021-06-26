@@ -22,11 +22,12 @@ import 'package:step/services/database.dart';
 // }
 
 class Wrapper extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<User>(
         stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context, snapshot) {
+        builder: (context, snapshot)  {
           if (snapshot.hasData && snapshot.data != null) {
             UserHelper.saveUser(snapshot.data);
             return RoleSelector();
